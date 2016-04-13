@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>My agenda box</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<style>
+		.event_box {
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+			margin-top: 100px;
+			width: 70%;
+			height: auto;
+			border: 1px solid #c1c1c1;
+			padding: 10px;
+			font-family: arial;
+			text-align: center;
+		}
+		.events {
+			width: 32.6%;
+			height: auto;
+			border: 1px solid #f40;
+			float: left;
+			text-align: left;
+			padding: 15px;
+		}
+		.events + .events {
+			margin-left: 10px;
+		}
+		.clear { clear: both;}
+	</style>
+</head>
+<body>
+
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Event Randoma</a>
+        </div>
+      </div>
+    </nav>
+
+	<div class="event_box">
+		<div class="events" id="event1">
+			
+		</div>
+		<div class="events" id="event2">
+			
+		</div>
+		<div class="events" id="event3">
+			
+		</div>
+		<div class="clear"></div>
+	</div>
+	
+	<script src="jslib/moment.js"></script>
+	<script src="jslib/zepto.js"></script>
+	<script>
+
+		class Event = function(title, description, site, telephone, start, end, level, type, adress, lon, lat, ville, prix) {
+			
+			this.title = title;
+			this.description = description;
+			var now = Date();
+			this.start = moment(new Date(start)).format('MM/DD/YYYY hh:mm:ss a');
+			this.end = moment(new Date(end)).format('MM/DD/YYYY hh:mm:ss a');
+			this.type = type;
+			this.adress = adress;
+
+			this.print = function(){
+				return 'Start : ' + this.start + '<br />' + 'End : ' + this.end + '<br/>';			
+			};
+
+			this.calc_difference = function() {
+				var d1 = Date.parse(this.start);
+				var d2 = Date.parse(this.end);
+				var diff = d2 - d1;
+				var calc_diff = Math.ceil(diff / (1000 * 60 * 60 * 24));
+				return 'Il reste : ' + calc_diff + ' jours'; 
+			};
+
+			this.filtre = function() {
+				var select_type = this.type;
+				var dom = $('.events');
+				switch(select_type) {
+
+				case 'Birthday' : 
+					$('#event1').css({ background : '#f40'});
+					break;
+				case 'Mariage' :
+					$('#event2').css({ background : '#ff0000'});
+					break;
+				case 'Dancing' :
+					$('#event3').css({ background : '#f2f'});
+					break;
+				default:
+    				console.log("Désolé, nous n'avons plus de " + select_type + ".");
+				}
+
+			};
+
+			this.add = function() {
+
+			}
+
+		}
+
+		var event_1 = new Event('Elmenyry' , 'bla' , '2016/04/10 13:00:00', '2016/05/12 13:00:00', 'Birthday');
+		var event_2 = new Event('Ayoub' , 'bla' , '2018/04/10 13:00:00', '2020/05/12 13:00:00', 'Mariage');
+		var event_3 = new Event('Ayoub' , 'bla' , '2020/04/10 13:00:00', '2020/05/12 13:00:00', 'Dancing');
+		
+		$('#event1').append('<p>'+ event_1.print()+'</p> <br /> <p> '+ event_1.calc_difference() +'</p>');
+		event_1.filtre();
+
+		$('#event2').append('<p>'+ event_2.print()+'</p> <br /> <p> '+ event_2.calc_difference() +'</p>');
+		event_2.filtre();
+
+		$('#event3').append('<p>'+ event_3.print()+'</p> <br /> <p> '+ event_3.calc_difference() +'</p>');
+		event_3.filtre();
+
+	</script>
+</body>
+</html>

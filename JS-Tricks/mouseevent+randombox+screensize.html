@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mouse and window event</title>
+  <style>
+    #box {
+      margin: 0 auto;
+      width:100px;
+      height:100px;
+      background : #c7c7c7;
+      position: absolute;
+    }
+    .box_drag {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 50px;
+      width: 100px;
+      height: 100px;
+      background: red;
+      cursor: pointer;
+    }
+    .drag_space {
+      width: 200px;
+      height: 200px;
+      border: 1px solid #c4c4c4;
+      float: left;
+      margin-left: 20px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div id="width"></div>
+  <div id="height"></div>
+
+  <div id="mouseX"></div>
+  <div id="mouseY"></div>
+
+  <div id="box"></div>
+
+
+<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+<script>
+  $(document).ready(function(){
+
+
+      /* random object */ 
+
+      var e = window.event;
+
+      var x = window.innerWidth;
+      var y = window.innerHeight;
+
+      document.getElementById('width').innerHTML = x;
+      document.getElementById('height').innerHTML = y;
+
+      var box = document.getElementById('box');
+      var box_height = box.clientHeight;
+      var box_width = box.clientWidth;
+
+
+      var space_v = y - box_height;
+      var space_h = x - box_width;
+
+      var random_v = Math.round(Math.random() * space_v);
+      var random_h = Math.round(Math.random() * space_h);
+
+      box.style.top = random_v + "px";
+      box.style.left = random_h + "px";
+
+      /* Mouse event */
+
+      $(document).mousemove(function(e) {
+
+        var mouseX = e.clientX;
+        var mouseY = e.clientY;
+        console.log(mouseX);
+        console.log(mouseY);
+
+        var random_box = Math.random(mouseX);
+
+        document.getElementById('mouseX').innerHTML = mouseX;
+        document.getElementById('mouseY').innerHTML = mouseY;
+
+      });
+
+  
+
+  });
+</script>
+</body>
+</html>
