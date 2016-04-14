@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Random names</title>
+  <style>
+    #box {
+      margin: 0 auto;
+      width:600px;
+      height:100px;
+      line-height: 40px;
+      text-align: center;
+      border :1px solid #c7c7c7;
+    }
+    #text {
+      font-size: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="box">
+    <p id="text"></p>
+
+    <a href="#" id="start">START</a> -
+    <a href="#" id="stop">STOP</a>
+  </div>
+
+<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+<script>
+  $(document).ready(function(){
+
+    var names = ['Hamza', 'Elmenyry', 'Paul', 'Jean', 'Marc', 'Paoula'];
+
+    function random() {
+      return names[Math.floor(Math.random()*names.length)];
+    }
+
+    var runner;
+
+    $('#start').click(function(event) {
+      runner = setInterval(function(){
+        document.getElementById('text').innerHTML = random(1);
+      }, 100);
+      event.preventDefault();
+    });
+
+    setTimeout(function(){
+      clearInterval(runner);
+    }, 1000);
+
+    $('#stop').click(function(event){
+      clearInterval(runner);
+      event.preventDefault();
+    });
+
+
+
+
+  });
+</script>
+</body>
+</html>
