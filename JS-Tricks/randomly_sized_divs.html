@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Random size divs</title>
+
+  <style>
+    #container {
+      display:block;
+      margin-right:auto;
+      margin-left:auto;
+      width:80%;
+      height :500px;
+      background:#c1c1c1;
+    }
+    #container > div:nth-child(even) {
+      background:#ff1;
+    }
+    #container > div:nth-child(odd) {
+      background:#f40;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="container">
+
+  </div>
+
+  <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script type="text/javascript">
+  $(document).ready(function(){
+
+    var boxes = 30;
+
+    var boxes_w = $('#container').width();
+    var boxes_h = $('#container').height();
+
+    var wind_w = $(window).width();
+    var wind_h = $(window).height();
+
+    var width_pour = (boxes_w / wind_w)*100 + 1;
+    var wfixed = width_pour.toFixed();
+
+    var height_pour = (boxes_h / wind_h)*100;
+    var hfixed = height_pour.toFixed();
+
+    console.log(wfixed+'%');
+    console.log(hfixed+'%');
+
+  	for(var i = 0; i<boxes; i++){
+
+      var box_x = boxes[i];
+      console.log(box_x);
+
+      thisWidth = wfixed / 8;
+  		thisHeight = hfixed / 2;
+
+  		$('<div></div>').appendTo('#container').css({
+        "display" : "inline-block",
+        "float" : "left",
+        "width" : thisWidth+'%',
+        "height" : thisHeight+'%',
+        "border" : "1px solid #fff",
+        "box-sizing" : "border-box"
+  		});
+
+  	}
+
+
+  });
+  </script>
+</body>
+</html>
