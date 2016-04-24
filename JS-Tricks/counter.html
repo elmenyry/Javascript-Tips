@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Counter JS</title>
+	<style>
+		#clock span{
+		  display:inline-block;
+		  width:50px;
+		  height:85px;
+		  background:url('images/chars.jpg');
+		  background-position:0 0;
+		}
+		#clock span:nth-child(even){
+		  margin-right:15px;
+		}
+	</style>
+</head>
+<body>
+	
+	<div id="clock"> 
+	  
+	  <span id="d0"></span>  
+	  <span id="d1"></span>
+	  
+	  <span id="h0"></span>  
+	  <span id="h1"></span>
+	  
+	  <span id="m0"></span>  
+	  <span id="m1"></span>
+	  
+	  <span id="s0"></span>  
+	  <span id="s1"></span>
+	  
+	</div>
+
+	<script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+	<script>
+	$(document).ready(function(){
+
+	var fut = new Date("Apr 25 2016 21:15:00 GMT+0200").getTime(),
+	    obj = {}; // {d:[7,7], h:[1,9], .....}
+
+	// fonction pour spliter les nombre
+	function intSpl( i ){
+	  i = Math.floor(i);
+	  return [~~(i/10), i%10]; // 37=[3,7] // 5=[0,5] // 0=[0,0] 
+	}
+
+	function drawTime(){  
+	  	var now = new Date().getTime(),   
+	    dif = now<fut ? Math.floor( (fut-now)/1000) : 0;
+	  	obj.s = intSpl(dif % 60);
+	  	obj.m = intSpl(dif/60 % 60);
+	  	obj.h = intSpl(dif/60/60 % 24);
+	  	obj.d = intSpl(dif/60/60/24);  
+	  
+	  	for(var key in obj){    
+	     	if(obj.hasOwnProperty(key)){
+	        	for(var i=0; i<2; i++){ 
+	            	$('#'+ key+i).css({backgroundPosition: -obj[key][i]*50 });
+	        	}
+	     	}    
+	  	}  
+
+	}
+	drawTime(); 
+	setInterval(drawTime, 1000); 
+
+
+
+	});
+	</script>
+</body>
+</html>
