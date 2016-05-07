@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>CSV TO TABLE AJAX</title>
+
+	<style>
+		table {
+		  margin: 0 auto;
+		  text-align: center;
+		  border-collapse: collapse;
+		  border: 1px solid #d4d4d4;
+		}
+		 
+		tr:nth-child(even) {
+		  background: #d4d4d4;
+		}
+		 
+		th, td {
+		  padding: 10px 30px;
+		}
+		 
+		th {
+		  border-bottom: 1px solid #d4d4d4;
+		}
+	</style>
+</head>
+<body>
+	
+
+	<script src="jq.js"></script>
+	<script>
+		$(document).ready(function() {
+			
+			$.ajax({
+				url : 'csv_data.csv',
+				dataType : 'text',
+			}).done(successFunction);	
+
+			function successFunction(data) {
+				var allrows = data.split(/\r?\n|\r/);
+				var table = '<table>';
+				for (var srow = 0; srow<allrows.length; srow++) {
+					if (srow === 0) {
+						table += '<thead>';
+						table += '<tr>';
+					} else {
+						table += '<tr>';
+					}
+
+					var rowCells = allRows[srow].split(',');
+				    for (var rowCell = 0; rowCell < rowCells.length; rowCell++) {
+				      if (singleRow === 0) {
+				        table += '<th>';
+				        table += rowCells[rowCell];
+				        table += '</th>';
+				      } else {
+				        table += '<td>';
+				        table += rowCells[rowCell];
+				        table += '</td>';
+				      }
+				    }
+
+				    if (srow === 0) {
+				      table += '</tr>';
+				      table += '</thead>';
+				      table += '<tbody>';
+				    } else {
+				      table += '</tr>';
+				    }
+				}
+				table += '</tbody>';
+				table += '</table>';
+				$('body').append(table);
+			}
+
+		});
+	</script>
+</body>
+</html>

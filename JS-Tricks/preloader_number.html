@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Preloader numbers</title>
+	<style>
+		/*#preloader {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: #000;
+		}*/
+		#preloader p {
+			font-size: 60px;
+			line-height: 500px;
+			text-align: center;
+			color: #000;
+		}
+	</style>
+</head>
+<body>
+
+	<canvas id="my_canvas" width="70" height="70" ></canvas>
+
+	<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+	<script>
+		$(document).ready(function() {
+	
+			var ctx = document.getElementById('my_canvas').getContext('2d');
+			var al = 0;
+			var start = 4.72;
+			var cw = ctx.canvas.width;
+			var ch = ctx.canvas.height;
+			var diff;
+
+			var sim = setInterval(progressSim, 50);
+
+			function progressSim() {
+				diff = ((al /100) * Math.PI*2*10).toFixed(2);
+				ctx.clearRect(0,0, cw, ch);
+				ctx.lineWidth = 10;
+				ctx.fillStyle = '#f40';
+				ctx.fillText(al + '%' , cw*.5, ch*.5+2 , cw);
+				ctx.beginPath();
+				ctx.arc(35,35,30, start, diff / 10+ start, false);
+				ctx.stroke();
+				al++;
+			}
+			
+		});
+	</script>
+
+</body>
+</html>
