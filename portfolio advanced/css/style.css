@@ -1,0 +1,254 @@
+input , textarea {
+	outline: none;
+	-webkit-transition: all ease 0.5s;
+	-moz-transition: all ease 0.5s;
+	-o-transition: all ease 0.5s;
+	transition: all ease 0.5s;
+}
+input:focus , textarea:focus {
+
+}
+/*
+ * COLORS
+ */
+ .white {
+ 	color: #fff;
+ }
+ .red {
+ 	color: #F2393B;
+ }
+ .bgRed {
+ 	background-color: #F2393B;
+ }
+.black {
+	color : #111111;
+}
+.bgBlack {
+	background : #111111;
+	color : #fff;
+}
+.red {
+	color : #c00000;
+}
+.BgYellow {
+	background-color: #F09F04;
+}
+.yellow {
+	color: #F09F04;
+}
+.bgError {
+	background-color: #e60d12;
+	color: #fff;
+}
+.gris {
+	color: #767676;
+}
+/* Errors forms */
+.errorlist { display: none; }
+.errorlist+p input { background: #FFEAEA; border: 1px solid #FF9F9F !important; color: #eb7889;}
+/*
+ * TYPOS
+ */
+body {
+	font-family: 'ralewaylight';
+	background: url('../images/patt.jpg') repeat center center;
+	color : #fff;
+}
+.funny {
+	font-family: 'odudabold';
+}
+.regular {
+	font-family: 'ralewayregular';
+}
+.bold {
+	font-family: 'open_sansbold';
+	font-weight : normal;
+}
+.light {
+	font-family: 'ralewaylight';
+}
+.semi_bold {
+	font-family: 'open_sanssemibold';
+}
+.franchise {
+	font-family: 'franchise';
+	font-weight: normal;
+}
+.normal {
+	font-style: normal;
+	font-weight: normal;
+}
+.arial {
+	font-family: Arial, sans-serif;
+}
+
+h1, h2, h3, h4 {
+	font-weight : normal;
+}
+/*
+LAYOUT
+*/
+
+#loading {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	background: #000;
+	z-index: 999;
+}
+.glob_container {
+	width: 100%;
+	height: auto;
+	margin: 0 auto;
+}
+.container {
+	width: 950px;
+	height: auto;
+	margin: 0 auto;
+}
+.big_title {
+	font-family: 'odudabold';
+	font-size: 30px;
+}
+/* intro */
+.intro {
+	width: 100%;
+	height: 100vh;
+	background-image: url('../images/jump.jpg');
+	background-size: 100%;
+}
+
+/* about me */
+.profil {
+	height: auto;
+}
+.profil_img {
+	width: 30%;
+	height: 350px;
+	overflow: hidden;
+}
+.profil_description {
+	width: 61.5%;
+	height: 300px;
+	padding: 25px;
+	background: #fff;
+}
+/* my services */
+.services {
+	height: auto;
+}
+.services_bloc {
+	width: 22.75%;
+	height: 200px;
+	background: #fff;
+	float: left;
+}
+.services_bloc + .services_bloc {
+	margin-left: 3%;
+}
+.row_services {
+	height: auto;
+	margin-top: 25px;
+}
+
+/* my works */
+.works {
+	height: auto;
+}
+.works_bloc {
+	width: 31.333%;
+	height: 300px;
+	float: left;
+	overflow: hidden;
+	background: #fff;
+}
+.works_bloc + .works_bloc {
+	margin-left: 3%;
+}
+.row_works {
+	height: auto;
+	margin-top: 25px;
+}
+
+
+/* contact */
+.contact_container {
+	height: 519px;
+	background: url('../images/contact.jpg') no-repeat center center;
+}
+.contact_logo {
+	width: 292px;
+	height: 151px;
+}
+.contact_infos {
+	width: 40%;
+	height: 200px;
+	background: rgba(255,255,255,0.2);
+}
+.contact_form {
+	width: 50%;
+	height: 200px;
+	background: rgba(255,255,255,0.2);
+}
+/* footer */
+.footer {
+	height: 80px;
+	line-height: 80px;
+}
+.footer_social a {
+	color: #fff;
+}
+.footer_social a:after {
+	content: '/';
+	color:#ff0000;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.footer_social a:last-child:after {
+	content: ' ';
+}
+
+
+
+
+/* Animation css3 keyframes Hamza */
+
+.scaleDown {
+	animation: scaleDown .7s ease both;
+}
+.scaleUp {
+	animation: scaleUp .7s ease both;
+}
+
+.rotateSlideIn {
+	-webkit-animation: rotateSlideIn 1s both ease;
+	animation: rotateSlideIn 1s both ease;
+}
+
+.scaleUpDown {
+	-webkit-animation: scaleUpDown .5s ease both;
+	animation: scaleUpDown .5s ease both;
+}
+
+@keyframes scaleDown {
+	from { opacity: 0; transform : scale(0);}
+	to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes scaleUp {
+	from { opacity: 0; transform: scale(.8); }
+}
+
+@keyframes rotateSlideIn {
+	0%, 25% { opacity: .5; -webkit-transform: translateZ(-500px) translateX(200%); transform: translateZ(-500px) translateX(200%); }
+	75% { opacity: .5; -webkit-transform: translateZ(-500px); transform: translateZ(-500px); }
+	100% { opacity: 1; -webkit-transform: translateZ(0) translateX(0); transform: translateZ(0) translateX(0); }
+}
+
+@keyframes scaleUpDown {
+	from { opacity: 0; -webkit-transform: scale(1.2); transform: scale(1.2); }
+}
