@@ -1,10 +1,9 @@
-
 <svg version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="432px" height="224px" viewBox="0 0 432 224" style="enable-background:new 0 0 432 224;" xml:space="preserve">
 
 	 <defs>
 	 	<style>
-	 		.st2 {
+	 		.st2.active {
 				stroke-dasharray : 1000;
 				stroke-dashoffset : 0;
 				-webkit-animation : dash 3s linear forwards;
