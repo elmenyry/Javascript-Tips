@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Dynamique table</title>
+</head>
+<body>
+	
+
+	<script>
+
+		var table = '';
+		var rows = 6;
+		var cols = 4;
+
+		for ( r=0; r<rows; r++) {
+			table+= '<tr>'
+				for ( c=0; c<cols ; c++) {
+					table += '<td>' + c + '</td>';	
+				}
+			table+= '</tr>'
+		}
+
+		document.write('<table border=1>' + table + '</table>');
+
+	</script>
+
+
+</body>
+</html>

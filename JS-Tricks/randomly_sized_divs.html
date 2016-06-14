@@ -9,7 +9,7 @@
       display:block;
       margin-right:auto;
       margin-left:auto;
-      width:80%;
+      width:1000px;
       height :500px;
       background:#c1c1c1;
     }
@@ -31,7 +31,7 @@
   <script type="text/javascript">
   $(document).ready(function(){
 
-    var boxes = 30;
+    var boxes = 1;
 
     var boxes_w = $('#container').width();
     var boxes_h = $('#container').height();
@@ -40,27 +40,32 @@
     var wind_h = $(window).height();
 
     var width_pour = (boxes_w / wind_w)*100 + 1;
+
     var wfixed = width_pour.toFixed();
+
+    console.log('-------------');
+    console.log(wfixed);
 
     var height_pour = (boxes_h / wind_h)*100;
     var hfixed = height_pour.toFixed();
 
-    console.log(wfixed+'%');
-    console.log(hfixed+'%');
+    console.log(boxes_w);
 
   	for(var i = 0; i<boxes; i++){
 
-      var box_x = boxes[i];
-      console.log(box_x);
+      var w = boxes_w / boxes;
 
-      thisWidth = wfixed / 8;
-  		thisHeight = hfixed / 2;
+      var box_num = boxes_w / boxes;
+      var box_num_h = boxes_h / boxes;
+
+    
+      /*thisWidth = wfixed / 8;
+  		thisHeight = hfixed / 2;*/
 
   		$('<div></div>').appendTo('#container').css({
-        "display" : "inline-block",
         "float" : "left",
-        "width" : thisWidth+'%',
-        "height" : thisHeight+'%',
+        "width" : box_num_h+'%',
+        "height" : box_num_h+'%',
         "border" : "1px solid #fff",
         "box-sizing" : "border-box"
   		});
