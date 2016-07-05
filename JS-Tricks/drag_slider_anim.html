@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>	</title>
+
+	<style>
+		.home-page .scrubber {
+		    padding-top: 3em;
+		    cursor: ew-resize;
+		}
+		.home-page section {
+    padding-top: 2.5em;
+    padding-bottom: 2.5em;
+}
+.center {
+    text-align: center;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, nav, section, summary {
+    display: block;
+}
+.home-page {
+    -webkit-font-smoothing: antialiased;
+}
+body {
+    color: #4c4c4c;
+    font-family: "BentonSans", "Helvetica Neue", Helvetica, Arial, Geneva, sans-serif;
+    line-height: 1.4em;
+    -webkit-font-smoothing: antialiased;
+}
+.wrapper {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0 auto;
+    max-width: 66.25em;
+    width: 93.96226%;
+    position: relative;
+}
+.home-page .scrubber {
+    padding-top: 3em;
+    cursor: ew-resize;
+}
+.wrapper:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.home-page .scrubber .content {
+    max-width: 720px;
+    margin: auto;
+}
+.home-page .purple h2 {
+    color: #fff;
+}
+.home-page h2 {
+    margin-top: .25em;
+    font-size: 32px;
+    letter-spacing: -.01em;
+    color: rgba(67,0,152,0.85);
+    font-weight: 100;
+}
+.home-page .purple p {
+    color: #fff;
+    color: rgba(255,255,255,0.8);
+}
+.home-page p {
+    margin: .7em 0;
+    color: #4c4c4c;
+}
+.scrubber-stage {
+    position: relative;
+    margin: 60px 0 0;
+}
+.scrubber-stage:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    margin-top: -4px;
+    height: 8px;
+    width: 90%;
+    background: #352169;
+}
+.scrubber-stage:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.scrubber-stage .scrubber-left {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    display: block;
+    float: left;
+    margin-right: 3.01887%;
+    margin-bottom: 3.01887%;
+    width: 14.15094%;
+    vertical-align: top;
+}
+.scrubber-stage .scrubber-left, .scrubber-stage .scrubber-right {
+    height: 330px;
+}
+.scrubber-stage .scrubber-middle {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    display: block;
+    float: left;
+    margin-right: 3.01887%;
+    margin-bottom: 3.01887%;
+    width: 65.66038%;
+    vertical-align: top;
+    position: relative;
+    height: 400px;
+    margin-bottom: 0;
+}
+.scrubber-stage .scrubber-right {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    display: block;
+    float: left;
+    margin-right: 3.01887%;
+    margin-bottom: 3.01887%;
+    width: 14.15094%;
+    vertical-align: top;
+    margin-right: 0;
+}
+.scrubber-stage .scrubber-right:last-child {
+    margin-bottom: 0;
+}
+.scrubber-stage .scrubber-left img, .scrubber-stage .scrubber-right img {
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+img {
+    height: auto;
+    max-width: 100%;
+        border: 0;
+}
+.scrubber-stage .scrubber-middle>div {
+    position: absolute;
+    top: 0;
+    overflow: hidden;
+    height: 360px;
+}
+#scrubber-handle {
+    position: absolute;
+    height: 110%;
+    width: 8px;
+    left: 50%;
+    top: -5%;
+    border-radius: 4px;
+    background: #4A90E2;
+    z-index: 100;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    overflow: visible;
+}
+.scrubber-stage .scrubber-right img {
+    top: 55%;
+}
+#scrubber-handle:before {
+    display: block;
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30px;
+    height: 20px;
+    -webkit-transform: translateY(-50%) translateX(-50%);
+    -moz-transform: translateY(-50%) translateX(-50%);
+    -ms-transform: translateY(-50%) translateX(-50%);
+    -o-transform: translateY(-50%) translateX(-50%);
+    transform: translateY(-50%) translateX(-50%);
+    background: #4A90E2 url(https://d3k90kvix375hb.cloudfront.net/assets/home/scrubber/scrubber-grabber-c8a549340eb229d71cbfd7e056de58f2e04112c26ef8562a5a39508ec287a531.svg) no-repeat center;
+    border-radius: 4px;
+}
+.scrubber-stage .scrubber-middle>div {
+    position: absolute;
+    top: 0;
+    overflow: hidden;
+    height: 360px;
+}
+.scrubber-stage .scrubber-before {
+    right: 0;
+}
+.scrubber-stage .scrubber-before>div {
+    right: 0;
+    width: 650px;
+    background-image: url(https://d3k90kvix375hb.cloudfront.net/assets/home/scrubber/scrubber-before-b70cc4e8c1ca28cefafe782a656de4311d0a0b88431df3c4fc37a69982e52d84.svg);
+    background-size: 100%;
+}
+.scrubber-stage .scrubber-middle>div>div {
+    position: absolute;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.scrubber-stage .scrubber-after>div {
+    width: 690px;
+    background-image: url(https://d3k90kvix375hb.cloudfront.net/assets/home/scrubber/scrubber-after-a4a4f3cde6a9623a06ce434cc9b9d78a17e78084fd60e311c284034bd9d08186.svg);
+    background-size: 80%;
+}
+.scrubber-stage .scrubber-middle>div>div {
+    position: absolute;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.scrubber-stage .scrubber-middle>div {
+    position: absolute;
+    top: 0;
+    overflow: hidden;
+    height: 360px;
+}
+.scrubber-stage .scrubber-after {
+    left: 0;
+    background-position: center 55%;
+}
+	</style>
+</head>
+<body>
+	<section class="scrubber center">
+  <div class="wrapper">
+
+
+    <div class="scrubber-stage">
+      <div class="scrubber-left">
+        <img alt="Write code" src="https://d3k90kvix375hb.cloudfront.net/assets/home/scrubber/scrubber-r.svg">
+      </div>
+      <div class="scrubber-middle">
+        <div id="scrubber-handle" style="left: 638.516px;"></div>
+        <div class="scrubber-before" style="width: 57.4844px;">
+          <h4>…not infrastructure</h4>
+          <div></div>
+        </div>
+        <div class="scrubber-after" style="width: 638.516px;">
+          <h4>Build apps</h4>
+          <div></div>
+        </div>
+      </div>
+      <div class="scrubber-right">
+        <img alt="Deploy" src="https://d3k90kvix375hb.cloudfront.net/assets/home/scrubber/scrubber-r.svg">
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<script src="https://d3k90kvix375hb.cloudfront.net/assets/application-aec1085301e12eaedfa38e67bb5855aeaa7699a85ee08489c46b1acec3424923.js"></script>
+<script>
+	$(document).ready(function() {
+
+
+                    var t, e, n, i, r, s, a, o, u, d, l, c, f, h, m, p, y, g, v, w, D, M, Y, S, k, T, b;
+                    return w = $(".scrubber-stage"), v = $(".scrubber-middle"), u = $("#scrubber-handle"), r = $(".scrubber-before"), t = $(".scrubber-after"), d = u.outerWidth(), T = v.outerWidth(), l = v.outerHeight(), b = v.offset(), S = b.top, f = b.left, s = S + v.outerHeight(), p = f + T, c = !1, g = !1, k = window.innerHeight, n = k / 2 + 134, i = S - n, e = i + 750, h = 0, a = 0, m = 0, o = 0, w.hover(function() {
+                        return c = !0
+                    }, function() {
+                        return c = !1
+                    }), $(document).mousemove(_.throttle(function(t) {
+                        return h = a, m = o, a = t.pageX, o = t.pageY, D() && h !== a && $(window).scrollTop() > S / 2 ? (Y(t), g = !0) : void 0
+                    }, 33)), M = function(t) {
+                        return Math.min(Math.max(t - f, -d), T)
+                    }, D = function() {
+                        var t, e;
+                        return e = $(window).scrollTop(), t = e + window.innerHeight, S > e && t > S || s > e && t > s
+                    }, y = function(e, n, i) {
+                        var s;
+                        return s = M(e), n ? (u.stop().animate({
+                            left: s
+                        }, n, "linear", i), r.stop().animate({
+                            width: T - s
+                        }, n, "linear"), t.stop().animate({
+                            width: s
+                        }, n, "linear")) : (u.stop().css({
+                            left: s
+                        }), r.stop().css({
+                            width: T - s
+                        }), t.stop().css({
+                            width: s
+                        }))
+                    }, Y = function() {
+                        var t, e, n, i, r;
+                        if (!c) return r = $(window).scrollTop(), t = o ? S > o : S > r, e = o ? o > s : r > s, i = u.offset().left, a !== h && Math.abs(a - i) > 10 ? (n = t || e ? Math.abs(t ? o - S : s - o) : 100, y(a, n)) : void 0
+                    }, $(window).scroll(function(t) {
+                        var n;
+                        if (!g) return i <= (n = $(window).scrollTop() + 32) && e + 32 >= n && !g ? y(Math.min(f + Math.max(12 + $(window).scrollTop() - i, 12), f + 830)) : void 0
+                    }), w.mousemove(function(t) {
+                        return a !== h ? (y(t.pageX), g = !0) : void 0
+                    }), $(window).scrollTop() < i ? y(f + 12) : $(window).scrollTop() > e ? y(f + 830) : void 0
+              
+              });
+</script>
+</body>
+</html>
