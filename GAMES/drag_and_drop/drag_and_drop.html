@@ -1,0 +1,697 @@
+
+<html>
+<head>
+  <title>CAITLIN HAAF - INTERACTIVE SELF-PORTRAIT</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="text/javascript" src="http://www.caitlinhaaf.com/portpages/selfportrait/_code/zim_1.4.4_min.js"></script>
+</head>
+
+<body>
+
+  <nav>
+    <!-- <h1>Caitlin Haaf: Interactive Self-Portrait</h1> -->
+  </nav>
+
+  <script src="http://www.caitlinhaaf.com/portpages/selfportrait/_code/createjs-2015.05.21.min.js"></script>
+    <script>
+    // ONCE PAGE HAS LOADED, EXECUTE FUNCTION
+    window.addEventListener('load', interactive);
+    function interactive() {
+
+      // VARIABLES
+      var stage = new createjs.Stage("myCanvas"); //adding stage with ID
+      var stageW = 900;
+      var stageH = 700;
+
+      var dragW = 100;
+      var dragH = 100;
+
+      var dropW = 350;
+      var dropH = 180;
+      var dropX = 530;
+      var topMargin = 15;
+
+      var col1 = 100;
+      var col2 = 225;
+      var col3 = 350;
+
+      var row1 = 260;
+      var row2 = 385;
+      var row3 = 515;
+
+      stage.enableMouseOver();
+
+      //  PRELOAD IMAGES HERE
+      var imgPath = "_images/";
+      var manifest = [{id:"title", src:"title.png"},
+                      {id:"box", src:"window.png"},
+                      {id:"dragthese", src:"dragthese.png"},
+                      {id:"textBubbleFill", src:"textBubble.png"},
+
+                      {id:"drag_toque", src:"drag_toque.png"},
+                      {id:"drag_helmet", src:"drag_helmet.png"},
+                      {id:"drag_scarf", src:"drag_scarf.png"},
+                      {id:"drag_jacket", src:"drag_jacket.png"},
+                      {id:"drag_apron", src:"drag_apron.png"},
+                      {id:"drag_knit", src:"drag_knit.png"},
+                      {id:"drag_boot", src:"drag_boot.png"},
+                      {id:"drag_sneaker", src:"drag_sneaker.png"},
+                      {id:"drag_plant", src:"drag_plant.png"},
+
+                      {id:"head_base", src:"head_base.png"},
+                      {id:"body_base", src:"body_base.png"},
+                      {id:"leg_base", src:"leg_base.png"},
+                      {id:"tb_base", src:"tb_base.png"},
+
+                      {id:"head_toque", src:"head_toque.png"},
+                      {id:"head_helmet", src:"head_helmet.png"},
+                      {id:"head_scarf", src:"head_scarf.png"},
+
+                      {id:"body_jacket", src:"body_jacket.png"},
+                      {id:"body_apron", src:"body_apron.png"},
+                      {id:"body_knit", src:"body_knit.png"},
+
+                      {id:"legs_boot", src:"legs_boot.png"},
+                      {id:"legs_sneakers", src:"legs_sneakers.png"},
+                      {id:"legs_plant", src:"legs_plant.png"},
+
+                      {id:"tb_toque", src:"tb_toque.png"},
+                      {id:"tb_helmet", src:"tb_helmet.png"},
+                      {id:"tb_scarf", src:"tb_scarf.png"},
+                      {id:"tb_apron", src:"tb_apron.png"},
+                      {id:"tb_dog", src:"tb_dog.png"},
+                      {id:"tb_jacket", src:"tb_jacket.png"},
+                      {id:"tb_knit", src:"tb_knit.png"},
+                      {id:"tb_sneakers", src:"tb_sneakers.png"},
+                      {id:"tb_plant", src:"tb_plant.png"},];
+
+
+      var preload = new createjs.LoadQueue(false, imgPath);
+      preload.loadManifest(manifest);
+      preload.on("complete", start);
+
+      //run once bitmaps preloaded
+      function start(){
+
+
+        // CREATE "TEXT BUBBLE" COINTAINER
+        var textBubbleFill = new createjs.Bitmap(preload.getResult("textBubbleFill"));
+        stage.addChild(textBubbleFill);
+        textBubbleFill.x = dropX - 50;
+        textBubbleFill.y = -25;
+
+        var textBubble = new createjs.Container();
+        textBubble.x = dropX - 30;
+        textBubble.y = topMargin;
+        stage.addChild(textBubble);
+
+        var tb_base = new createjs.Bitmap(preload.getResult("tb_base"));
+        textBubble.addChild(tb_base);
+
+        // VARIABLES - BITMAPS TO BE ADDED TO TEXT BUBBLE
+        var tb_base = new createjs.Bitmap(preload.getResult("tb_base"));
+        var tb_helmet = new createjs.Bitmap(preload.getResult("tb_helmet"));
+        var tb_scarf = new createjs.Bitmap(preload.getResult("tb_scarf"));
+        var tb_toque = new createjs.Bitmap(preload.getResult("tb_toque"));
+        var tb_apron = new createjs.Bitmap(preload.getResult("tb_apron"));
+        var tb_dog = new createjs.Bitmap(preload.getResult("tb_dog"));
+        var tb_jacket = new createjs.Bitmap(preload.getResult("tb_jacket"));
+        var tb_knit = new createjs.Bitmap(preload.getResult("tb_knit"));
+        var tb_sneakers = new createjs.Bitmap(preload.getResult("tb_sneakers"));
+        var tb_plant = new createjs.Bitmap(preload.getResult("tb_plant"));
+
+        var title = new createjs.Bitmap(preload.getResult("title"));
+        stage.addChild(title);
+        title.x = col1 - 80;
+        title.y = topMargin;
+
+        var box = new createjs.Bitmap(preload.getResult("box"));
+        stage.addChild(box);
+        box.x = col1 - 80;
+        box.y = 200;
+
+        var dragthese = new createjs.Bitmap(preload.getResult("dragthese"));
+        stage.addChild(dragthese);
+        dragthese.x = col1 - 60;
+        dragthese.y = 160;
+
+
+
+
+        // CREATE/ADD DROP CONTAINERS
+        var drops = new createjs.Container();
+        stage.addChild(drops);
+
+        var headContainer = newDropContainer(1);
+        headContainer.x = dropX;
+        headContainer.y = 110;
+        headContainer.setBounds(headContainer.x, headContainer.y, dropW, dropH);
+
+
+        var bodyContainer = newDropContainer(1);
+        bodyContainer.x = dropX;
+        bodyContainer.y = 305;
+        bodyContainer.setBounds(bodyContainer.x, bodyContainer.y, dropW, dropH);
+
+        var legContainer = newDropContainer(1);
+        legContainer.x = dropX;
+        legContainer.y = 500;
+        legContainer.setBounds(legContainer.x, legContainer.y, dropW, dropH);
+
+        drops.addChild(headContainer, bodyContainer, legContainer);
+
+        // ADDING DEFAULT IMAGES
+        var dropHead = new createjs.Bitmap(preload.getResult("head_base"));
+        var dropBody = new createjs.Bitmap(preload.getResult("body_base"));
+        var dropLeg = new createjs.Bitmap(preload.getResult("leg_base"));
+
+        headContainer.addChild(dropHead);
+        bodyContainer.addChild(dropBody);
+        legContainer.addChild(dropLeg);
+
+        // VARIABLES - BITMAPS TO APPEAR IN THE 'DROP' BOXES
+        var headToque = new createjs.Bitmap(preload.getResult("head_toque"));
+        var headHelmet = new createjs.Bitmap(preload.getResult("head_helmet"));
+        var headScarf = new createjs.Bitmap(preload.getResult("head_scarf"));
+
+        var body_jacket = new createjs.Bitmap(preload.getResult("body_jacket"));
+        var body_apron = new createjs.Bitmap(preload.getResult("body_apron"));
+        var body_knit= new createjs.Bitmap(preload.getResult("body_knit"));
+
+        var leg_boot= new createjs.Bitmap(preload.getResult("legs_boot"));
+        var leg_sneakers= new createjs.Bitmap(preload.getResult("legs_sneakers"));
+        var leg_plant= new createjs.Bitmap(preload.getResult("legs_plant"));
+
+
+        // GRADIENT BOX (OVERLAY FOR DROP BOXES - APPEARS WHEN HITTING)
+        var gradientBox = new createjs.Shape();
+        gradientBox.graphics.beginFill("white").drawRect(0, 0, dropW, dropH, 30);
+        gradientBox.alpha = 0.5;
+
+
+
+        // CREATE/ADD TO STAGE DRAG CONTAINERS
+        var dragables = new createjs.Container();
+        stage.addChild(dragables);
+
+
+        // heads
+        var head1 = newDragContainer(1);
+        head1.setBounds(100,100,dragW,dragH);
+        head1.x = col1;
+        head1.y = row1;
+
+        var head2 = newDragContainer(1);
+        head2.setBounds(100,100,dragW,dragH);
+        head2.x = col2;
+        head2.y = row1;
+
+        var head3 = newDragContainer(1);
+        head3.setBounds(100,100,dragW,dragH);
+        head3.x = col3;
+        head3.y = row1;
+
+        dragables.addChild(head1, head2, head3);
+
+        //bodies
+        var body1 = newDragContainer(1);
+        body1.setBounds(100,100,dragW,dragH);
+        body1.x = col1;
+        body1.y = row2;
+
+        var body2 = newDragContainer(1);
+        body2.setBounds(100,100,dragW,dragH);
+        body2.x = col2;
+        body2.y = row2;
+
+        var body3 = newDragContainer(1);
+        body3.setBounds(100,100,dragW,dragH);
+        body3.x = col3;
+        body3.y = row2;
+
+        dragables.addChild(body1, body2, body3);
+
+        // legs
+        var legs1 = newDragContainer(1);
+        legs1.setBounds(100,100,dragW,dragH);
+        legs1.x = col1;
+        legs1.y = row3;
+
+        var legs2 = newDragContainer(1);
+        legs2.setBounds(100,100,dragW,dragH);
+        legs2.x = col2;
+        legs2.y = row3;
+
+        var legs3 = newDragContainer(1);
+        legs3.setBounds(100,100,dragW,dragH);
+        legs3.x = col3;
+        legs3.y = row3;
+
+        dragables.addChild(legs1, legs2, legs3);
+
+
+        // adding bitmaps to drag containers
+        var drag_toque = new createjs.Bitmap(preload.getResult("drag_toque"));
+        var drag_helmet = new createjs.Bitmap(preload.getResult("drag_helmet"));
+        var drag_scarf = new createjs.Bitmap(preload.getResult("drag_scarf"));
+        var drag_jacket = new createjs.Bitmap(preload.getResult("drag_jacket"));
+        var drag_apron = new createjs.Bitmap(preload.getResult("drag_apron"));
+        var drag_knit= new createjs.Bitmap(preload.getResult("drag_knit"));
+        var drag_boot = new createjs.Bitmap(preload.getResult("drag_boot"));
+        var drag_sneaker = new createjs.Bitmap(preload.getResult("drag_sneaker"));
+        var drag_plant = new createjs.Bitmap(preload.getResult("drag_plant"));
+
+        head1.addChild(drag_toque);
+        head2.addChild(drag_helmet);
+        head3.addChild(drag_scarf);
+
+        body1.addChild(drag_jacket);
+        body2.addChild(drag_apron);
+        body3.addChild(drag_knit);
+
+        legs1.addChild(drag_boot);
+        legs2.addChild(drag_sneaker);
+        legs3.addChild(drag_plant);
+
+
+
+        // HIT TESTS
+
+        //collecting difference - for changing reg point
+        var dX; //difference X
+        var dY; //difference Y
+
+
+        // ADD DRAG/REG-RESET FUNCTION TO EACH OF THE CHILDREN OF THE DRAGABLES CONTAINER
+        // I COULD ITERATE THROUGH THE NUMBER OF CHILDREN, BUT NOT APPLY IT AS NEEDED
+        // for (var i=0; i<dragables.numChildren; i++){
+        //   // console.log(i);
+        //   var drag = dragables.getChildAt(i);
+        //
+        //   drag.on("mousedown", function(){
+        //     stage.addChild(drag);
+        //     dX = stage.mouseX - drag.x;
+        //     dY = stage.mouseY - drag.y;
+        //     stage.update();
+        //     return dX;
+        //     return dY;
+        //   })
+        //   drag.on("pressmove", function(){
+        //     drag.x = stage.mouseX - dX;
+        //     head1.y = stage.mouseY - dY;
+        //     stage.update();
+        //   })
+        // }
+
+        // head1
+        head1.on("mousedown", function(){
+          stage.addChild(head1);
+          dX = stage.mouseX - head1.x;
+          dY = stage.mouseY - head1.y;
+          stage.update();
+          return dX;
+          return dY;
+        });
+
+        head1.on("pressmove", function(e){
+          head1.x = stage.mouseX - dX;
+          head1.y = stage.mouseY - dY;
+          stage.update();
+         if(intersect(e.currentTarget, headContainer)){
+           e.currentTarget.alpha=0.2;
+           headContainer.addChild(gradientBox);
+         }else{
+           e.currentTarget.alpha=1;
+           headContainer.removeChild(gradientBox);
+         }
+        });
+        head1.on("pressup", function(e){
+          if(intersect(e.currentTarget, headContainer)){
+            headContainer.removeAllChildren();
+            headContainer.addChild(headToque);
+            textBubble.removeAllChildren();
+            textBubble.addChild(tb_toque);
+          }
+          headContainer.removeChild(gradientBox);
+          e.currentTarget.alpha=1;
+          zim.move(head1, col1, row1, 300);
+          stage.update();
+        });
+
+
+
+
+        //head2
+        head2.on("mousedown", function(){
+          stage.addChild(head2);
+          dX = stage.mouseX - head2.x;
+          dY = stage.mouseY - head2.y;
+          stage.update();
+          return dX;
+          return dY;
+        });
+        head2.on("pressmove", function(e){
+          head2.x = stage.mouseX - dX;
+          head2.y = stage.mouseY - dY;
+          stage.update();
+          if(intersect(e.currentTarget, headContainer)){
+            e.currentTarget.alpha=0.2;
+            headContainer.addChild(gradientBox);
+          }else{
+            e.currentTarget.alpha=1;
+            headContainer.removeChild(gradientBox);
+          }
+        });
+        head2.on("pressup", function(e){
+          if(intersect(e.currentTarget, headContainer)){
+            headContainer.removeAllChildren();
+            headContainer.addChild(headHelmet);
+            textBubble.removeAllChildren();
+            textBubble.addChild(tb_helmet);
+          }
+          headContainer.removeChild(gradientBox);
+          e.currentTarget.alpha=1;
+          zim.move(head2, col2, row1, 300);
+          stage.update();
+        });
+
+        //head3
+        head3.on("mousedown", function(){
+          stage.addChild(head2);
+          dX = stage.mouseX - head3.x;
+          dY = stage.mouseY - head3.y;
+          stage.update();
+          return dX;
+          return dY;
+        });
+        head3.on("pressmove", function(e){
+          head3.x = stage.mouseX - dX;
+          head3.y = stage.mouseY - dY;
+          stage.update();
+          if(intersect(e.currentTarget, headContainer)){
+            e.currentTarget.alpha=0.2;
+            headContainer.addChild(gradientBox);
+          }else{
+            e.currentTarget.alpha=1;
+            headContainer.removeChild(gradientBox);
+          }
+        });
+        head3.on("pressup", function(e){
+          if(intersect(e.currentTarget, headContainer)){
+            headContainer.removeAllChildren();
+            headContainer.addChild(headScarf);
+            textBubble.removeAllChildren();
+            textBubble.addChild(tb_scarf);
+          }
+          headContainer.removeChild(gradientBox);
+          e.currentTarget.alpha=1;
+          zim.move(head3, col3, row1, 300);
+          stage.update();
+        });
+
+
+
+        //body1
+        body1.on("mousedown", function(){
+          stage.addChild(body1);
+          dX = stage.mouseX - body1.x;
+          dY = stage.mouseY - body1.y;
+          stage.update();
+          return dX;
+          return dY;
+        });
+        body1.on("pressmove", function(e){
+          body1.x = stage.mouseX - dX;
+          body1.y = stage.mouseY - dY;
+          stage.update();
+         if(intersect(e.currentTarget, bodyContainer)){
+           e.currentTarget.alpha=0.2;
+           bodyContainer.addChild(gradientBox);
+         }else{
+           e.currentTarget.alpha=1;
+           bodyContainer.removeChild(gradientBox);
+         }
+        });
+        body1.on("pressup", function(e){
+          if(intersect(e.currentTarget, bodyContainer)){
+            bodyContainer.removeAllChildren();
+            bodyContainer.addChild(body_jacket);
+            textBubble.removeAllChildren();
+            textBubble.addChild(tb_jacket);
+          }
+          e.currentTarget.alpha=1;
+          bodyContainer.removeChild(gradientBox);
+          zim.move(body1, col1, row2, 300);
+          stage.update();
+        });
+
+
+        //body2
+        body2.on("mousedown", function(){
+          stage.addChild(body1);
+          dX = stage.mouseX - body2.x;
+          dY = stage.mouseY - body2.y;
+          stage.update();
+          return dX;
+          return dY;
+        });
+        body2.on("pressmove", function(e){
+          body2.x = stage.mouseX - dX;
+          body2.y = stage.mouseY - dY;
+          stage.update();
+         if(intersect(e.currentTarget, bodyContainer)){
+           e.currentTarget.alpha=0.2;
+           bodyContainer.addChild(gradientBox);
+         }else{
+           e.currentTarget.alpha=1;
+           bodyContainer.removeChild(gradientBox);
+         }
+        });
+        body2.on("pressup", function(e){
+          if(intersect(e.currentTarget, bodyContainer)){
+            bodyContainer.removeAllChildren();
+            bodyContainer.addChild(body_apron);
+            textBubble.removeAllChildren();
+            textBubble.addChild(tb_apron);
+          }
+          e.currentTarget.alpha=1;
+          bodyContainer.removeChild(gradientBox);
+          zim.move(body2, col2, row2, 300);
+          stage.update();
+        });
+
+
+
+        //body3
+        body3.on("mousedown", function(){
+          stage.addChild(body1);
+          dX = stage.mouseX - body3.x;
+          dY = stage.mouseY - body3.y;
+          stage.update();
+          return dX;
+          return dY;
+        });
+        body3.on("pressmove", function(e){
+          body3.x = stage.mouseX - dX;
+          body3.y = stage.mouseY - dY;
+          stage.update();
+         if(intersect(e.currentTarget, bodyContainer)){
+           e.currentTarget.alpha=0.2;
+           bodyContainer.addChild(gradientBox);
+         }else{
+           e.currentTarget.alpha=1;
+           bodyContainer.removeChild(gradientBox);
+         }
+        });
+        body3.on("pressup", function(e){
+          if(intersect(e.currentTarget, bodyContainer)){
+            bodyContainer.removeAllChildren();
+            bodyContainer.addChild(body_knit);
+            textBubble.removeAllChildren();
+            textBubble.addChild(tb_knit);
+          }
+          e.currentTarget.alpha=1;
+          bodyContainer.removeChild(gradientBox);
+          zim.move(body3, col3, row2, 300);
+          stage.update();
+        });
+
+
+
+
+        //legs1
+        legs1.on("mousedown", function(){
+          stage.addChild(body1);
+          dX = stage.mouseX - legs1.x;
+          dY = stage.mouseY - legs1.y;
+          stage.update();
+          return dX;
+          return dY;
+        });
+        legs1.on("pressmove", function(e){
+          legs1.x = stage.mouseX - dX;
+          legs1.y = stage.mouseY - dY;
+          stage.update();
+         if(intersect(e.currentTarget, legContainer)){
+           e.currentTarget.alpha=0.2;
+           legContainer.addChild(gradientBox);
+         }else{
+           e.currentTarget.alpha=1;
+           legContainer.removeChild(gradientBox);
+         }
+        });
+        legs1.on("pressup", function(e){
+          if(intersect(e.currentTarget, legContainer)){
+            legContainer.removeAllChildren();
+            legContainer.addChild(leg_boot);
+            textBubble.removeAllChildren();
+            textBubble.addChild(tb_dog);
+          }
+          e.currentTarget.alpha=1;
+          legContainer.removeChild(gradientBox);
+          zim.move(legs1, col1, row3, 300);
+          stage.update();
+        });
+
+
+
+
+
+        //legs2
+        legs2.on("mousedown", function(){
+          stage.addChild(body1);
+          dX = stage.mouseX - legs2.x;
+          dY = stage.mouseY - legs2.y;
+          stage.update();
+          return dX;
+          return dY;
+        });
+        legs2.on("pressmove", function(e){
+          legs2.x = stage.mouseX - dX;
+          legs2.y = stage.mouseY - dY;
+          stage.update();
+         if(intersect(e.currentTarget, legContainer)){
+           e.currentTarget.alpha=0.2;
+           legContainer.addChild(gradientBox);
+         }else{
+           e.currentTarget.alpha=1;
+           legContainer.removeChild(gradientBox);
+         }
+        });
+        legs2.on("pressup", function(e){
+          if(intersect(e.currentTarget, legContainer)){
+            legContainer.removeAllChildren();
+            legContainer.addChild(leg_sneakers);
+            textBubble.removeAllChildren();
+            textBubble.addChild(tb_sneakers);
+          }
+          e.currentTarget.alpha=1;
+          legContainer.removeChild(gradientBox);
+          zim.move(legs2, col2, row3, 300);
+          stage.update();
+        });
+
+
+
+        //legs3
+        legs3.on("mousedown", function(){
+          stage.addChild(body1);
+          dX = stage.mouseX - legs3.x;
+          dY = stage.mouseY - legs3.y;
+          stage.update();
+          return dX;
+          return dY;
+        });
+        legs3.on("pressmove", function(e){
+          legs3.x = stage.mouseX - dX;
+          legs3.y = stage.mouseY - dY;
+          stage.update();
+         if(intersect(e.currentTarget, legContainer)){
+           e.currentTarget.alpha=0.2;
+           legContainer.addChild(gradientBox);
+         }else{
+           e.currentTarget.alpha=1;
+           legContainer.removeChild(gradientBox);
+         }
+        });
+        legs3.on("pressup", function(e){
+          if(intersect(e.currentTarget, legContainer)){
+            legContainer.removeAllChildren();
+            legContainer.addChild(leg_plant);
+            textBubble.removeAllChildren();
+            textBubble.addChild(tb_plant);
+          }
+          e.currentTarget.alpha=1;
+          legContainer.removeChild(gradientBox);
+          zim.move(legs3, col3, row3, 300);
+          stage.update();
+        });
+
+
+
+
+
+
+      //MAKE NEW CONTAINERS FUNCTION
+      function newDropContainer(num){
+        // console.log("running drop function");
+        if(typeof num === 'undefined'){num=1;}; //if no number input, default to 1
+        var containers = new createjs.Container();
+
+        // TEMP GRAPHIC SETTINGS - to test positioning etc.
+        // var container; var g;
+        // for(var i=0; i<num; i++){
+        //   container = new createjs.Shape();
+        //   g = container.graphics;
+        //
+        //   // will input images later on
+        //   g.beginFill("white");
+        //   g.drawRect(0, 0, dropW, dropH, 30);
+        //
+        //   containers.addChild(container);//addshapetocontainer
+        //   }
+          return containers;
+        }
+
+        function newDragContainer(num){
+          // console.log("running drop function");
+          if(typeof num === 'undefined'){num=1;}; //if no number input, default to 1
+          var containers = new createjs.Container();
+          containers.cursor = "pointer";
+            return containers;
+          }
+
+
+
+        // INTERSECT FUNCTION - CHECK FOR HITTING
+        function intersect(drag, drop){
+        //retreives bounds set previously for each of the objects input
+        var dragBounds = drag.getBounds().clone();
+        var dropBounds = drop.getBounds().clone();
+
+        var pt = drag.globalToLocal(dropBounds.x, dropBounds.y);
+
+        var h1 = -(dragBounds.height / 2 + dropBounds.height);
+        var h2 = dropBounds.width / 2;
+        var w1 = -(dragBounds.width / 2 + dropBounds.width);
+        var w2 = dropBounds.width / 2;
+
+        // if obj1 not with obj2 bounds, return false
+        if(pt.x > w2 || pt.x < w1) return false;
+        if(pt.y > h2 || pt.y < h1) return false;
+
+        return true;
+        }
+
+        stage.update();
+      }
+
+
+    }
+
+    </script>
+
+    <canvas id="myCanvas" width="900" height="700">alternate content</canvas>
+
+    </body>
+    </html>
