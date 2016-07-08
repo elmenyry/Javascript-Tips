@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Canvas ping pong</title>
+	<style>
+		body {
+			margin:0;
+			padding: 0;
+		}
+		canvas {
+			display: block;
+			margin-left:auto;
+			margin-right: auto;
+			margin-top: 50px;
+		}
+	</style>
+</head>
+<body>
+
+	<canvas id="base" width="600" height="300"></canvas>
+	
+	<script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+	<script>
+		// Global variables
+		var x = 15;
+		var y = 30;  
+		var bSX = 10;
+		var bSY = 10;
+		var paddle1 = 250;
+		var paddle2 = 250;
+		const paddle_height = 100;
+		var offset = 0;
+		var fps = 30;
+		var player1 = 0;
+		var player2 = 0;
+
+		var canvas = document.getElementById('base');
+		var context = canvas.getContext('2d');
+
+		canvas.addEventListener('mousemove', function(event) {
+			var mousePos = mousemove(event);
+			paddle1 = mousePos.y-(paddle_height/2);
+		});
+
+		// Function to print the shapes
+		function draw() {
+			// clear
+			context.clearRect(0,0,canvas.width,canvas.height);
+			// base 
+			drawRect(offset,0,canvas.width,canvas.height,'#000');
+			// th ball
+			drawRect(x,y,20,20,'#ff0000');
+			// Left paddle
+			drawRect(0,paddle1,10,paddle_height,'#fff');
+			// Right paddle
+			drawRect(canvas.width-10,paddle2,10,paddle_height,'#fff');
+			// Score print 
+			context.fillText(player1, 100,100);
+			context.fillText(player2, canvas.width-100,100);
+		}
+
+		// Rest ball 
+		function resetball() {
+			bSX -= bSX;
+			x = canvas.width/2;
+			y = canvas.height/2;
+		}
+
+		// Function to move the mouse
+		function mousemove(event){
+			var rect = canvas.getBoundingClientRect();
+			var root = document.documentElement;
+			var mouseX = event.clientX - rect.left - root.scrollLeft;
+			var mouseY = event.clientY - rect.top - root.scrollTop;
+			return {
+				x:mouseX,
+				y:mouseY
+			}
+		}
+
+		// Function to draw the shapes
+		function drawRect(cX,cY,cW,cH,color) {
+			context.beginPath();
+			context.rect(cX,cY,cW,cH);
+			context.fillStyle = color;
+			context.fill();
+		}
+		// auto mouvment 
+		function autoMove() {
+			var paddle2Center = paddle2 + (paddle_height/2);
+			if ( paddle2Center < y-35 ) {
+				paddle2 += 6;
+			} else if ( paddle2Center < y+35 ) {
+				paddle2 -= 6;
+			}
+		}
+
+		// Function to move the shapes
+		function move() {
+			autoMove();
+			x += bSX;
+			y += bSY;
+			if ( x < 0 ) {
+				if ( y > paddle1 && y < paddle1+paddle_height ) {
+					bSX = -bSX;
+				} else {
+					resetball();
+					player2++;
+				}
+				
+			}
+			if ( x > canvas.width ) {
+				if ( y > paddle2 && y < paddle2+paddle_height ) {
+					bSX = -bSX;
+				} else {
+					resetball();
+					player1++;
+				}
+			} 
+			if ( y < 0 || y > canvas.height ) {
+				bSY = -bSY;
+			} 
+		}
+
+		setInterval(function() {
+			draw();
+			move();
+		}, 1000/fps);	
+
+	</script>
+</body>
+</html>
