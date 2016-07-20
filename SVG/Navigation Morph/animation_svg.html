@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Svg</title>
+	<style>
+		* {
+		  margin: 0;
+		  padding: 0;
+		  font-family: 'Arial', sans-serif;
+		}
+		.navigation-overlay {
+		    overflow: visible;
+		    position: fixed;
+		    top: 0;
+		    left: 0;
+		    right: 0;
+		    bottom: 0;
+		    padding: 15px;
+		    z-index: -1;
+		    opacity: 0;
+		    -webkit-transition: opacity .2s 0s, z-index 0s 3s, -webkit-transform .3s 0s;
+		    transition: opacity .2s 0s, z-index 0s 3s, -webkit-transform .3s 0s;
+		    transition: opacity .2s 0s, transform .3s 0s, z-index 0s 3s;
+		    transition: opacity .2s 0s, transform .3s 0s, z-index 0s 3s, -webkit-transform .3s 0s;
+		    -webkit-transform: scale(0.2);
+		    transform: scale(0.2);
+		    -webkit-transform-origin: 50% 50vh;
+		    transform-origin: 50% 50vh;
+		    background: #000;
+		}
+		.share_overlay {
+			position: absolute;
+			width: 100%;
+			height: 150px;
+			background:#f40;
+			top: -150px;
+			 -webkit-transition: all 0.2s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  				transition:         all 0.2s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+		}
+		.opened {
+			top: 0;
+		}
+		.svg-background {
+			position: absolute;
+			left: -11%;
+		    top: -11%;
+		    right: -11%;
+		    bottom: -11%;
+		}
+		.navigation-wrap {
+		    position: relative;
+		    height: 100%
+		}
+		.navigation-overlay .svg-background {
+		    position: absolute;
+		    left: -11%;
+		    top: -11%;
+		    right: -11%;
+		    bottom: -11%
+		}
+
+		.navigation-overlay .svg-background svg path {
+		    fill: #66fcf1
+		}
+
+		.navigation-wrap {
+		    position: relative;
+		    height: 100%
+		}
+
+		.no-svg .navigation {
+		    background-color: #66fcf1
+		}
+
+		.open-nav .navigation-overlay {
+		    z-index: 30;
+		    opacity: 1;
+		    -webkit-transition: opacity .2s 200ms, z-index 0s 0s, -webkit-transform .2s 200ms;
+		    transition: opacity .2s 200ms, z-index 0s 0s, -webkit-transform .2s 200ms;
+		    transition: opacity .2s 200ms, transform .2s 200ms, z-index 0s 0s;
+		    transition: opacity .2s 200ms, transform .2s 200ms, z-index 0s 0s, -webkit-transform .2s 200ms;
+		    -webkit-transform: scale(1);
+		    transform: scale(1)
+		}
+		.js-toggle-menu {
+			position: absolute;
+			top:20px;
+			left: 20px;
+			z-index: 9999999999;
+		}
+	</style>
+</head>
+<body>
+
+	<div class="navigation-overlay">
+        <div class="navigation-wrap">
+            <div class="svg-background" data-morph-open="M273,273c0,0-55.8-23-123-23c-78.2,0-123,23-123,23s23-37.7,23-123C50,79.936,27,27,27,27s46,23,124,23c85,0,122-23,122-23s-23,38.43-23,123C250,229.646,273,273,273,273z" data-morph-close="M273,273c0,0-55.8,24-123,24c-78.2,0-123-24-123-24S3,235.3,3,150C3,79.936,27,27,27,27S72,3,150,3 c85,0,123,24,123,24s24,38.43,24,123C297,229.646,273,273,273,273z">
+
+                <svg width="100%" height="100%" viewBox="0 0 300 300" preserveAspectRatio="none">
+                    <path d="M273,273C273,273,217.2,273,150,273C71.8,273,27,273,27,273C27,273,27,235.3,27,150C27,79.936,27,27,27,27C27,27,72,27,150,27C235,27,273,27,273,27C273,27,273,65.43,273,150C273,229.646,273,273,273,273C273,273,273,273,273,273"></path>
+              	</svg>
+            </div>
+        </div>
+    </div>
+
+    <div class="share_overlay">
+    	
+    </div>
+	
+	<a href="#" class="js-toggle-menu">nav</a>
+	<a href="#" class="js-toggle-share">social media</a>
+
+	<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+	<script src="snap.js"></script>
+	<script src="main.js"></script>
+
+</body>
+</html>
