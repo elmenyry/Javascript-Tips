@@ -4,7 +4,17 @@
 	<meta charset="UTF-8">
 	<title>Tracking mouse</title>
 	<style>
-
+	
+	body {
+		overflow: hidden;
+		cursor:url("images/mousecursor.png"), auto;
+	}
+	.base {
+		width: 500px;
+		height: 500px;
+		background: #63E2C6;
+		margin: 100px auto;
+	}
 	#foo {
 		border-radius:50px;
 		width:50px;
@@ -13,27 +23,69 @@
 		position:absolute;
 		top:0;
 		left:0;
-		-moz-transition: transform 1s; 
-		-webkit-transition: transform 1s;  
-		-ms-transition: transform 1s;  
-		-o-transition: transform 1s;  
-		transition: transform 1s;  
 	}
-		
+	.face {
+		position: absolute;
+		top: 40%;
+		left: 50%;
+		margin-left: -125px;
+		margin-top: -90px;
+		width: 350px;
+		height: 180px;
+		background: url('../GAMES/drag_and_drop/_images/head_base.png');
+		-webkit-transition: all ease 0.5s;
+		-o-transition: all ease 0.5s;
+		transition: all ease 0.5s;
+	}
+	.fill_jaune {
+		background: url('../GAMES/drag_and_drop/_images/head_scarf.png');
+	}
+	.animated {
+		opacity: 0;
+	}
 	</style>
 </head>
 <body>
 	
-	<div id="foo"></div>
+	<div class="base">
+		<div id="foo"></div>
+		<div class="face">
+		</div>
+		<p id="animated"></p>
+	</div>
 	
+
 	<script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
 	<script>
 		jQuery(document).ready(function() {
+			
 			var f = document.getElementById('foo');
-			document.addEventListener('click', function(ev){
+			document.addEventListener('mousemove', function(ev){
 			    f.style.transform = 'translateY('+(ev.clientY-25)+'px)';
 			    f.style.transform += 'translateX('+(ev.clientX-25)+'px)';
-			},false);    		
+			},false);
+
+			jQuery('.face').click(function(){
+				$('.face').toggleClass('fill_jaune');
+			});
+
+
+			var mystring = "ELMENYRY HAMZA TEXTE ANIMATION";
+			var sep_letters = mystring.split('');
+			console.log(mystring);
+			console.log(sep_letters);
+
+			function anim(element) {
+				var i;
+			  console.log(element[i]);
+			}
+
+			setInterval(function(){ 
+				sep_letters.forEach(anim);
+			}, 3000);
+			
+
+
 		});
 	</script>
 </body>

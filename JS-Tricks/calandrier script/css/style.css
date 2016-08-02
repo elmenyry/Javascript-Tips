@@ -1,0 +1,95 @@
+
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+  text-transform: uppercase; }
+
+h2 {
+  font-size: 25px; }
+
+
+
+
+#calendrier{
+  width: 477px;
+  height: auto;
+  float: left;
+}
+#event_avtif{
+  float: left;
+}
+
+
+#calendrier table{
+
+width: 100%;
+background: #0070b8;
+color: #fff;
+text-align: center;
+
+
+}
+#calendrier td{
+
+width: 14.2%;
+height: 50px;
+
+}
+#calendrier a {
+
+    margin: 0 auto;
+    display: inline-block;
+    text-decoration: none;
+    color: #fff;
+    width: 30px;
+    line-height: 30px;
+}
+#calendrier tr{
+
+  padding-left: 20px;
+  background-color: initial;
+
+}
+
+#calendrier td .now{
+
+ background: #f49500;
+
+}
+#calendrier  #menu_cal{
+
+background-color: #f49500;
+height: 75px;
+color: #fff;
+position: relative;
+font-size: 30px;
+
+}
+
+#menu_cal .mois{
+  height: 75px;
+  text-align: center;
+  padding-top: 10px;
+
+}
+#menu_cal .next{
+
+position: absolute;
+right: 10px;
+top: 22px;
+}
+
+#menu_cal .prev{
+
+position: absolute;
+left: 10px;
+top: 22px;
+}
+.event{
+      border-style: solid;
+    border-width: 1px;
+-webkit-border-radius: 100px;
+-moz-border-radius: 100px;
+border-radius: 100px;
+
+}
