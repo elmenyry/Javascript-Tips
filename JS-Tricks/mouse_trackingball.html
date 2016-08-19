@@ -62,10 +62,12 @@
 			var f = document.getElementById('foo');
 			document.addEventListener('mousemove', function(ev){
 			    f.style.transform = 'translateY('+(ev.clientY-25)+'px)';
-			    f.style.transform += 'translateX('+(ev.clientX-25)+'px)';
+			    //f.style.transform = 'rotateY('+(ev.clientY-25)+'deg)';
+			    //f.style.transformOrigin = '0 0';
+			    //f.style.transform += 'translateX('+(ev.clientX-25)+'px)';
 			},false);
 
-			jQuery('.face').click(function(){
+			jQuery('.face').hover(function(){
 				$('.face').toggleClass('fill_jaune');
 			});
 
